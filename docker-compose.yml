@@ -1,0 +1,9 @@
+services:
+  happy-qa:
+    image: happy-qa
+    environment:
+      - ALGORITHM_TYPE=${ALGORITHM_TYPE:-basic}
+      - SPRINT_DURATION=${SPRINT_DURATION:-10}
+    volumes:
+      - ./:/app/output
+      - ./releases.txt:/app/releases.txt
