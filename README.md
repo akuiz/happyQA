@@ -104,7 +104,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
     cd happyQA
     ```
 
-2. Run the application using Maven with one of the available profiles (`basicAlgorithm` or `advancedAlgorithm`). You
+2. Run the application using Maven with one of the available profiles (`basic` or `advanced`). You
    can pass system properties like the input file name, sprint duration, and output file name. If no parameters passed,
    default ones are used from the description.
 
@@ -112,12 +112,12 @@ You can run the application either using **Maven** or **Docker**. Both methods a
 
 - **Basic Algorithm**:
     ```bash
-    mvn clean compile exec:java -PbasicAlgorithm
+    mvn clean compile exec:java -Pbasic
     ```
 
 - **Advanced Algorithm**:
     ```bash
-    mvn clean compile exec:java -PadvancedAlgorithm
+    mvn clean compile exec:java -Padvanced
     ```
 - **Configuration**: The application can be also customized using the following system properties:
 
@@ -134,7 +134,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
   
 - **Example**:
     ```bash
-    mvn clean compile exec:java -PadvancedAlgorithm -Dsprint.duration=10 -Dreleases.file.name=releases.txt -Doutput.file.name=output.txt -Doutput.file.name.advance=output-advanced.txt
+    mvn clean compile exec:java -Padvanced -Dsprint.duration=10 -Dreleases.file.name=releases.txt -Doutput.file.name=output.txt -Doutput.file.name.advance=output-advanced.txt
     ```
 
 ### Running the App with Docker
@@ -147,7 +147,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
 
 2. **Build the Docker image from docker file**:
     ```bash
-    docker build -t happyQA .
+    docker build -t happy-qa .
     ```
 
 3. Run the application in a Docker container, specifying the algorithm type (`basic` or `advanced`) and optional
@@ -159,7 +159,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
 
   - Docker run
   ```bash
-  docker run --rm -e ALGORITHM_TYPE=basic -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happyQA
+  docker run --rm -e ALGORITHM_TYPE=basic -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happy-qa
   ```
   - Docker compose
   ```bash
@@ -169,7 +169,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
 - **Advanced Algorithm**:
   - Docker run
   ```bash
-  docker run --rm -e ALGORITHM_TYPE=advanced -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happyQA
+  docker run --rm -e ALGORITHM_TYPE=advanced -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happy-qa
   ```
   - Docker compose
   ```bash

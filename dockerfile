@@ -9,7 +9,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the JAR for both profiles
-RUN mvn clean package -PbasicAlgorithm,advancedAlgorithm
+RUN mvn clean package -Pbasic,advanced
 
 # Use a smaller JDK base image for the runtime
 FROM openjdk:17-jdk-alpine
@@ -18,8 +18,8 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy both JARs from the build stage to the runtime container
-COPY --from=build /app/target/HappyQA-1.0-basicAlgorithm.jar ./basicAlgorithm.jar
-COPY --from=build /app/target/HappyQA-1.0-advancedAlgorithm.jar ./advancedAlgorithm.jar
+COPY --from=build /app/target/HappyQA-1.0-basic.jar ./basic.jar
+COPY --from=build /app/target/HappyQA-1.0-advanced.jar ./advanced.jar
 
 # Copy the text file if it's needed for your application
 COPY releases.txt ./releases.txt
