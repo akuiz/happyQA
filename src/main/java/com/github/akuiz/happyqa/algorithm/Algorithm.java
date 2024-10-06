@@ -32,7 +32,6 @@ public class Algorithm {
         int lastTestingDay = 0;
 
         for (Release release : releaselist) {
-            // TO DO Get from properties file
             if(lastTestingDay<release.getDeliveryDay()){
                 lastTestingDay = release.getEndTestingDay();
                 optimalReleasTestingSchedule.add(release);
