@@ -29,7 +29,7 @@ public class Algorithm {
           Steps of the algorithm:
           1. Sort the releases by the end testing day in ascending order.
           2. Add first release to the optimal release schedule
-          3. skip all parallel releases
+          3. skip all parallel releases with optimal release
           4. Add next 'non-overlapping' release to the optimal release schedule
           5. Repeat 3,4 until no releases left
          */
@@ -37,15 +37,14 @@ public class Algorithm {
         // Sort the releases by the end testing day in ascending order.
         releaseList.sort(Comparator.comparingInt(Release::getEndTestingDay));
 
-        // First release in sorted list is always optimal
-        Release optimalRelease = releaseList.get(0);
-        optimalReleasTestingSchedule.add(optimalRelease);
+        // Create a placeholder optimal release to add first one from the sorted list as optimal
+        Release optimalRelease = new Release(0,0);//releaseList.get(0);
 
-        // Go through all releases starting from second release
-        for (int i = 1; i <releaseList.size() ; i++) {
+        // Go through all releases
+        for (Release release : releaseList) {
             // Next release that does not overlap with optimal release -> add it to the release schedule and make it optimal.
-            if(optimalRelease.getEndTestingDay() < releaseList.get(i).getDeliveryDay()){
-                optimalRelease = releaseList.get(i);
+            if (release.getStartTestingDay() > optimalRelease.getEndTestingDay()) {
+                optimalRelease = release;
                 optimalReleasTestingSchedule.add(optimalRelease);
             }
         }
