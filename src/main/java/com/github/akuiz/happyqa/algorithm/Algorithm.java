@@ -20,23 +20,36 @@ public class Algorithm {
      */
     public static List<Release> createOptimalTestingSchedule(List<Release> releaselist, int sprintDuration) {
 
-
         List<Release> optimalReleasTestingSchedule = new ArrayList<Release>();
 
         //remove all 'too late to test' releases
         trimReleaseList(releaselist, sprintDuration);
 
-        // sort the releases by the end testing day in ascending order
+        /*
+          Steps of the algorithm:
+          1. Sort the releases by the end testing day in ascending order.
+          2. add first release to the optimal release schedule
+          3. skip all parallel releases
+          4. Add next 'non-overlapping' release to the optimal release schedule
+          5. Repeat 3,4 until no releases left
+         */
+
+        // Sort the releases by the end testing day in ascending order.
         releaselist.sort(Comparator.comparingInt(Release::getEndTestingDay));
 
-        int lastTestingDay = 0;
+        // First release in sorted list is always optimal
+        Release optimalRelease = releaselist.get(0);
+        optimalReleasTestingSchedule.add(optimalRelease);
 
-        for (Release release : releaselist) {
-            if(lastTestingDay<release.getDeliveryDay()){
-                lastTestingDay = release.getEndTestingDay();
-                optimalReleasTestingSchedule.add(release);
+        // Go through all releases starting from second release
+        for (int i = 1; i <releaselist.size() ; i++) {
+            // Next release that does not overlap with optimal release -> add it to the release schedule and make it optimal.
+            if(optimalRelease.getEndTestingDay() < releaselist.get(i).getDeliveryDay()){
+                optimalRelease = releaselist.get(i);
+                optimalReleasTestingSchedule.add(optimalRelease);
             }
         }
+        // Optimal release schedule
         return optimalReleasTestingSchedule;
     }
 
