@@ -1,6 +1,8 @@
 package com.github.akuiz.happyqa.release;
 
 
+import java.util.Objects;
+
 /**
  * This class represents a Release from Happy QA point of view.
  * It provides multiple attributes for better release testing scheduling and management, like
@@ -65,6 +67,29 @@ public class Release {
         this.endTestingDay = deliveryDay + timeToTest - 1;
     }
 
+    /**
+     * Creates Release object based on the following parameters:
+     *
+     * @param deliveryDay #day of the sprint when the release is delivered for testing
+     * @param startTestingDay #day of the sprint when the release is supposed to start the testing
+     * @param timeToTest  how many days it takes to test the release
+     */
+    public Release(int deliveryDay, int startTestingDay, int timeToTest) {
+
+        this.deliveryDay = deliveryDay;
+        this.timeToTest = timeToTest;
+
+        // By default, testing of the release is supposed to start on the same day of delivery
+        this.startTestingDay = startTestingDay;
+
+        /*
+        #day when the release will be completely tested.
+        If endTestingDay > sprint.duration (based on the config)
+        then the release can't be tested within the same sprint.
+         */
+        this.endTestingDay = startTestingDay + timeToTest - 1;
+    }
+
     public int getStartTestingDay() {
         return startTestingDay;
     }
@@ -117,5 +142,21 @@ public class Release {
         } else {
             return toString();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Release release = (Release) o;
+        return deliveryDay == release.deliveryDay &&
+                timeToTest == release.timeToTest &&
+                startTestingDay == release.startTestingDay &&
+                endTestingDay == release.endTestingDay;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deliveryDay, timeToTest, startTestingDay, endTestingDay);
     }
 }
