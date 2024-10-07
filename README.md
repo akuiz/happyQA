@@ -86,9 +86,9 @@ The application generates two files **output.txt** and **output-advanced.txt**.
 
 Before running the application, ensure you have the following installed on your machine:
 
-- Java 17 or higher
+- Java 11 or higher
 - Maven 3.8.4 or higher
-- Docker (for containerized execution)
+- Docker, docker-compose (for containerized execution)
 
 ---
 
