@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package -Pbasic,advanced
 
 # Use a smaller JDK base image for the runtime
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11-jre-slim
 
 # Set the working directory for the runtime container
 WORKDIR /app
