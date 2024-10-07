@@ -63,8 +63,8 @@ public class FileUtils {
      * Writes release list size followed by info about each release to an output file.
      *
      * @param releaseList is the release list
-     * @param filename is a path to output file
-     * @param detailed to print all details about releases. If set to false, only Delivery Day of the release and End Day are printed.
+     * @param filename    is a path to output file
+     * @param detailed    to print all details about releases. If set to false, only Delivery Day of the release and End Day are printed.
      */
     public static void writeReleaseListToFile(List<Release> releaseList, String filename, boolean detailed) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {

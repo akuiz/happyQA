@@ -70,9 +70,9 @@ public class Release {
     /**
      * Creates Release object based on the following parameters:
      *
-     * @param deliveryDay #day of the sprint when the release is delivered for testing
+     * @param deliveryDay     #day of the sprint when the release is delivered for testing
      * @param startTestingDay #day of the sprint when the release is supposed to start the testing
-     * @param timeToTest  how many days it takes to test the release
+     * @param timeToTest      how many days it takes to test the release
      */
     public Release(int deliveryDay, int startTestingDay, int timeToTest) {
 

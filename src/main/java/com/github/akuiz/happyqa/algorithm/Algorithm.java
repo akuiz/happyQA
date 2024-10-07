@@ -14,8 +14,7 @@ public class Algorithm {
      * no 'parallel' testing of releases
      * any taken release must be completed within a sprint
      *
-     *
-     * @param releaseList given list of releases
+     * @param releaseList    given list of releases
      * @param sprintDuration duration of the sprint in days
      */
     public static List<Release> createOptimalTestingSchedule(List<Release> releaseList, int sprintDuration) {
@@ -38,7 +37,7 @@ public class Algorithm {
         releaseList.sort(Comparator.comparingInt(Release::getEndTestingDay));
 
         // Create a placeholder optimal release to add first one from the sorted list as optimal
-        Release optimalRelease = new Release(0,0);//releaseList.get(0);
+        Release optimalRelease = new Release(0, 0);//releaseList.get(0);
 
         // Go through all releases
         for (Release release : releaseList) {
@@ -58,8 +57,7 @@ public class Algorithm {
      * no 'parallel' testing of releases
      * any taken release must be completed within a sprint
      *
-     *
-     * @param releaseList given list of releases
+     * @param releaseList    given list of releases
      * @param sprintDuration duration of the sprint in days
      */
     public static List<Release> releaseScheduleAdvanced(List<Release> releaseList, int sprintDuration) {
@@ -108,7 +106,7 @@ public class Algorithm {
     /**
      * This method removes all 'too late to test' releases from the provided release list based on the sprint duration
      *
-     * @param releaselist given list of releases
+     * @param releaselist    given list of releases
      * @param sprintDuration duration of the sprint in days
      */
     public static void trimReleaseList(List<Release> releaselist, int sprintDuration) {

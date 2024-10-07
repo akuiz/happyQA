@@ -14,7 +14,8 @@
 
 ## Description
 
-**Happy QA** is a Java-based application that solves the problem of scheduling release testing for a given sprint based on
+**Happy QA** is a Java-based application that solves the problem of scheduling release testing for a given sprint based
+on
 release delivery schedule and estimated testing time.
 
 **Basic algorithm** helps testers find the optimal schedule and maximize the number of tested releases when testing of a
@@ -43,6 +44,7 @@ number of days required to validate a release. **releases.txt** file is located 
     10 3
     4 5 
     ```
+
 ---
 
 ## Output
@@ -124,14 +126,15 @@ You can run the application either using **Maven** or **Docker**. Both methods a
     - **sprint.duration**: Defines the sprint duration in the application.
     - **releases.file.name**: Defines input file name with releases.
     - **output.file.name**: Defines output file name with optimal release schedule based on selected algorithm.
-    - **output.file.name.advanced**: Defines output file name with advanced details for optimal release schedule based on selected algorithm.
-  
+    - **output.file.name.advanced**: Defines output file name with advanced details for optimal release schedule based
+      on selected algorithm.
+
     ```bash
     -Dsprint.duration=10
     -Dreleases.file.name=releases.txt 
     -Doutput.file.name=output.txt
     -Doutput.file.name.advanced=output-advanced.txt
-  
+
 - **Example**:
     ```bash
     mvn clean compile exec:java -Padvanced -Dsprint.duration=10 -Dreleases.file.name=releases.txt -Doutput.file.name=output.txt -Doutput.file.name.advance=output-advanced.txt
@@ -151,27 +154,28 @@ You can run the application either using **Maven** or **Docker**. Both methods a
     ```
 
 3. Run the application in a Docker container, specifying the algorithm type (`basic` or `advanced`) and optional
-   parameters such as the input/output files. Or use predefined docker-compose configurations for basic and advanced algorithms.
+   parameters such as the input/output files. Or use predefined docker-compose configurations for basic and advanced
+   algorithms.
 
 #### Example Commands:
 
 - **Basic Algorithm (Default)**:
 
-  - Docker run
+    - Docker run
   ```bash
   docker run --rm -e ALGORITHM_TYPE=basic -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happy-qa
   ```
-  - Docker compose
+    - Docker compose
   ```bash
   ALGORITHM_TYPE=basic docker-compose up -d
   ```
-  
+
 - **Advanced Algorithm**:
-  - Docker run
+    - Docker run
   ```bash
   docker run --rm -e ALGORITHM_TYPE=advanced -v $(pwd)/:/app/output -v $(pwd)/releases.txt:/app/releases.txt happy-qa
   ```
-  - Docker compose
+    - Docker compose
   ```bash
   ALGORITHM_TYPE=advanced docker-compose up -d
   ```
@@ -180,7 +184,7 @@ You can run the application either using **Maven** or **Docker**. Both methods a
 
     - **SPRINT_DURATION**: Defines the sprint duration in days.
     - **ALGORITHM_TYPE**: Algorithm type.
-  
+
   ```bash
     -e SPRINT_DURATION=10
     -e ALGORITHM_TYPE=basic
