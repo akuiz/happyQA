@@ -4,12 +4,12 @@
 
 - [Description](#description)
 - [Prerequisites](#prerequisites)
+- [Input](#input)
+- [Output](#output)
 - [How to Build and Run](#how-to-build-and-run)
     - [Running the App with Maven](#running-the-app-with-maven)
     - [Running the App with Docker](#running-the-app-with-docker)
     - [Running the App with IDE](#running-the-app-with-ide)
-- [Input](#input)
-- [Output](#output)
 
 ---
 
