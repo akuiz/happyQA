@@ -7,6 +7,7 @@
 - [How to Build and Run](#how-to-build-and-run)
     - [Running the App with Maven](#running-the-app-with-maven)
     - [Running the App with Docker](#running-the-app-with-docker)
+    - [Running the App with IDE](#running-the-app-with-ide)
 - [Input](#input)
 - [Output](#output)
 
@@ -201,4 +202,12 @@ You can run the application either using **Maven** or **Docker**. Both methods a
   ```bash
   ALGORITHM_TYPE=advanced SPRINT_DURATION=10 docker-compose up -d
     ```
-  
+
+### Running the App with IDE
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/akuiz/happyQA.git
+    ```
+2. **Open the project in any Java IDE** and navigate into **BasicAlgorithm** or **AdvancedAlgorithm** class.
+3. Simply run **main()** method from the class.
