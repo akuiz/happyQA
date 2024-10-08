@@ -97,4 +97,38 @@ public class BasicAlgorithmTest {
 
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void testBasicAlgorithmBackToBack() {
+
+        List<Release> inputReleases = new ArrayList<>(Arrays.asList(
+                new Release(1, 1),
+                new Release(2, 1),
+                new Release(3, 1),
+                new Release(4, 1),
+                new Release(5, 1),
+                new Release(6, 1),
+                new Release(7, 1),
+                new Release(8, 1),
+                new Release(9, 1),
+                new Release(10, 1)
+        ));
+
+        List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
+                new Release(1, 1),
+                new Release(2, 1),
+                new Release(3, 1),
+                new Release(4, 1),
+                new Release(5, 1),
+                new Release(6, 1),
+                new Release(7, 1),
+                new Release(8, 1),
+                new Release(9, 1),
+                new Release(10, 1)
+        ));
+
+        List<Release> actualOutput = Algorithm.createOptimalTestingSchedule(inputReleases, 10);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }

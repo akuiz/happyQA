@@ -18,6 +18,10 @@ public class Release {
      */
     private int deliveryDay;
 
+    public int getTimeToTest() {
+        return timeToTest;
+    }
+
     /**
      * How many days it takes to test the release
      */
@@ -34,6 +38,11 @@ public class Release {
     private int endTestingDay;
 
     /**
+     * Unique ID of the release (this field initialised at the time of reading release inputs from the input file)
+     */
+    private String id;
+
+    /**
      * Set id to the release
      */
     public void setId(String id) {
@@ -41,9 +50,11 @@ public class Release {
     }
 
     /**
-     * Unique ID of the release (this field initialised at the time of reading release inputs from the input file)
+     * Return id of the release
      */
-    private String id;
+    public String getId() {
+        return id;
+    }
 
     /**
      * Creates Release object based on the following parameters:
@@ -103,6 +114,17 @@ public class Release {
     public void setStartTestingDay(int startTestingDay) {
         this.startTestingDay = startTestingDay;
         this.endTestingDay = startTestingDay + timeToTest - 1;
+    }
+
+    /**
+     * TO DO
+     * TO DO
+     *
+     * @param endTestingDay testing day in the sprint for this release
+     */
+    public void setEndTestingDay(int endTestingDay) {
+        this.endTestingDay = endTestingDay;
+        this.startTestingDay = endTestingDay - timeToTest + 1;
     }
 
     public int getDeliveryDay() {

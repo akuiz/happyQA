@@ -25,11 +25,11 @@ public class AdvancedAlgorithmTest {
         ));
 
         List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
-                new Release(1, 1),
-                new Release(2, 1),
-                new Release(3, 1),
-                new Release(4, 5),
-                new Release(9, 1)
+                new Release(1, 2, 1),
+                new Release(2, 3, 1),
+                new Release(3, 4, 1),
+                new Release(4, 5, 5),
+                new Release(9, 10, 1)
         ));
 
         List<Release> actualOutput = Algorithm.releaseScheduleAdvanced(inputReleases, 10);
@@ -38,7 +38,7 @@ public class AdvancedAlgorithmTest {
     }
 
     @Test
-    public void testBasicAlgorithmNoReleasesCanBeTested() {
+    public void testAdvancedAlgorithmNoReleasesCanBeTested() {
 
         List<Release> inputReleases = new ArrayList<>(Arrays.asList(
                 new Release(10, 4),
@@ -53,7 +53,7 @@ public class AdvancedAlgorithmTest {
     }
 
     @Test
-    public void testBasicAlgorithmOneReleaseToTest() {
+    public void testAdvancedAlgorithmOneReleaseToTest() {
 
         List<Release> inputReleases = new ArrayList<>(Arrays.asList(
                 new Release(10, 2),
@@ -63,7 +63,7 @@ public class AdvancedAlgorithmTest {
         ));
 
         List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
-                new Release(5, 1)
+                new Release(5, 10, 1)
         ));
 
         List<Release> actualOutput = Algorithm.releaseScheduleAdvanced(inputReleases, 10);
@@ -72,7 +72,7 @@ public class AdvancedAlgorithmTest {
     }
 
     @Test
-    public void testBasicAlgorithm() {
+    public void testAdvancedAlgorithmManyReleases() {
 
         List<Release> inputReleases = new ArrayList<>(Arrays.asList(
                 new Release(1, 6),
@@ -86,9 +86,66 @@ public class AdvancedAlgorithmTest {
         ));
 
         List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
-                new Release(2, 2, 3),
-                new Release(4, 5, 2),
-                new Release(5, 7, 3)
+                new Release(4, 4, 2),
+                new Release(5, 6, 3),
+                new Release(9, 9, 2)
+        ));
+
+        List<Release> actualOutput = Algorithm.releaseScheduleAdvanced(inputReleases, 10);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testAdvancedAlgorithmBackToBack() {
+
+        List<Release> inputReleases = new ArrayList<>(Arrays.asList(
+                new Release(1, 1),
+                new Release(2, 1),
+                new Release(3, 1),
+                new Release(4, 1),
+                new Release(5, 1),
+                new Release(6, 1),
+                new Release(7, 1),
+                new Release(8, 1),
+                new Release(9, 1),
+                new Release(10, 1)
+        ));
+
+        List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
+                new Release(1, 1),
+                new Release(2, 1),
+                new Release(3, 1),
+                new Release(4, 1),
+                new Release(5, 1),
+                new Release(6, 1),
+                new Release(7, 1),
+                new Release(8, 1),
+                new Release(9, 1),
+                new Release(10, 1)
+        ));
+
+        List<Release> actualOutput = Algorithm.releaseScheduleAdvanced(inputReleases, 10);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testAdvancedAlgorithmOneOverlap() {
+
+        List<Release> inputReleases = new ArrayList<>(Arrays.asList(
+                new Release(1, 2),
+                new Release(2, 1),
+                new Release(3, 1),
+                new Release(5, 2),
+                new Release(4, 5)
+        ));
+
+        List<Release> expectedOutput = new ArrayList<>(Arrays.asList(
+                new Release(2, 2, 1),
+                new Release(3, 3, 1),
+                new Release(4, 4, 5),
+                new Release(5, 9, 2)
         ));
 
         List<Release> actualOutput = Algorithm.releaseScheduleAdvanced(inputReleases, 10);
