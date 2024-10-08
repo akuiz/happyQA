@@ -19,7 +19,7 @@ public class AdvancedAlgorithm {
 
         List<Release> initialReleaseList = FileUtils.readReleaseDetailsFromFile(releasesFileName);
 
-        List<Release> finalReleaseTestingSchedule = Algorithm.releaseScheduleAdvanced(initialReleaseList, sprintDuration);
+        List<Release> finalReleaseTestingSchedule = Algorithm.releaseScheduleAdvanced_1(initialReleaseList, sprintDuration);
 
         // Output releases to test with their original delivery day and end testing day.
         FileUtils.writeReleaseListToFile(finalReleaseTestingSchedule, outputFileName, false);

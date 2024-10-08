@@ -3,6 +3,7 @@ package com.github.akuiz.happyqa.algorithm;
 import com.github.akuiz.happyqa.release.Release;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -111,5 +112,48 @@ public class Algorithm {
      */
     public static void trimReleaseList(List<Release> releaselist, int sprintDuration) {
         releaselist.removeIf(release -> release.getEndTestingDay() > sprintDuration);
+    }
+
+    /**
+     * This method provides best release testing schedule based on a given release list, considering the following
+     * release testing can be postponed
+     * no 'parallel' testing of releases
+     * any taken release must be completed within a sprint
+     *
+     * @param releaseList    given list of releases
+     * @param sprintDuration duration of the sprint in days
+     */
+    public static List<Release> releaseScheduleAdvanced_1(List<Release> releaseList, int sprintDuration) {
+
+        //remove all 'too late to test' releases
+        trimReleaseList(releaseList, sprintDuration);
+
+        releaseList.sort((r1, r2) -> {
+            // First, compare by startTestingDay (ascending)
+            int startTestingComparison = Integer.compare(r1.getStartTestingDay(), r2.getStartTestingDay());
+            if (startTestingComparison != 0) {
+                return startTestingComparison;
+            }
+            // If startTestingDay is the same, compare by size (descending)
+            return Integer.compare(r2.getTimeToTest(), r1.getTimeToTest());
+        });
+
+        List<Release> optimalReleaseTestingSchedule = new ArrayList<Release>();
+        Release optimalRelease = new Release(sprintDuration + 1, 1);
+
+        /*
+          Steps of the algorithm:
+          1. TO DO
+         */
+
+        for (int i = releaseList.size() - 1; i >= 0; i--) {
+            if (releaseList.get(i).getEndTestingDay() < optimalRelease.getStartTestingDay()) {
+                releaseList.get(i).setEndTestingDay(optimalRelease.getStartTestingDay() - 1);
+                optimalRelease = releaseList.get(i);
+                optimalReleaseTestingSchedule.add(optimalRelease);
+            }
+        }
+        Collections.reverse(optimalReleaseTestingSchedule);
+        return optimalReleaseTestingSchedule;
     }
 }

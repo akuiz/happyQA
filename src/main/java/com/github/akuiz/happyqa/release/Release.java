@@ -18,6 +18,10 @@ public class Release {
      */
     private int deliveryDay;
 
+    public int getTimeToTest() {
+        return timeToTest;
+    }
+
     /**
      * How many days it takes to test the release
      */
@@ -103,6 +107,17 @@ public class Release {
     public void setStartTestingDay(int startTestingDay) {
         this.startTestingDay = startTestingDay;
         this.endTestingDay = startTestingDay + timeToTest - 1;
+    }
+
+    /**
+     * TO DO
+     * TO DO
+     *
+     * @param  endTestingDay testing day in the sprint for this release
+     */
+    public void setEndTestingDay(int endTestingDay) {
+        this.endTestingDay = endTestingDay;
+        this.startTestingDay = endTestingDay - timeToTest + 1;
     }
 
     public int getDeliveryDay() {
