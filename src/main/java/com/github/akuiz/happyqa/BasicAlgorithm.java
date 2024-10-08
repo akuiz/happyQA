@@ -20,6 +20,7 @@ public class BasicAlgorithm {
         // Parse input file and initialise releaseList variable.
         List<Release> releaseList = FileUtils.readReleaseDetailsFromFile(releasesFileName);
 
+        //Start the algorithm
         List<Release> finalReleaseTestingSchedule = Algorithm.createOptimalTestingSchedule(releaseList, sprintDuration);
 
         // Output releases to test with their original delivery day and end testing day.
