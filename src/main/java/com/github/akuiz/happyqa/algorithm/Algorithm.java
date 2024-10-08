@@ -108,7 +108,7 @@ public class Algorithm {
         for (int i = releaseList.size() - 1; i >= 0; i--) {
             // If a release doesn't overlap with optimal release
             if (releaseList.get(i).getEndTestingDay() < optimalRelease.getStartTestingDay()) {
-                // 'Make it' optimal and also 'move' this release next to the optimal by adjusting startTestingday
+                // 'Make it' optimal and also 'move' this release next to the optimal by adjusting startTestingDay
                 optimalRelease = new Release(releaseList.get(i).getDeliveryDay(), optimalRelease.getStartTestingDay() - releaseList.get(i).getTimeToTest(), releaseList.get(i).getTimeToTest());
                 optimalRelease.setId(releaseList.get(i).getId());
                 // Add optimal release to the final schedule
